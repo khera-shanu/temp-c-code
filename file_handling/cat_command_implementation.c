@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int main(int argc, char *argv[])
 {
@@ -6,13 +7,13 @@ int main(int argc, char *argv[])
 	char c;
 	FILE *fp;
 
+	if (argc < 2) {
+		printf("cat: missing file operand\n");
+		exit(1);
+	}
+
 	for (i = 1; i < argc; i++) {
 		fp = fopen(argv[i], "r");
-
-		if (fp == NULL) {
-			printf("cat: %s: No such file or directory\n", argv[i]);
-			continue;
-		}
 
 		while ((c = fgetc(fp)) != EOF)
 			putchar(c);
